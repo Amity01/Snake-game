@@ -33,14 +33,17 @@ while game_is_on:
         snake.extend()
         scoreboard.increment_score()
     if snake.head.xcor() > 290 or snake.head.xcor() < -297 or snake.head.ycor() > 300 or snake.head.ycor() < -290:
-        game_is_on = False
-        scoreboard.game_over()
+        snake.erase_snake()
+        scoreboard.reset()
+        snake.restart()
+
 
     # detect collusion with head and body
     for segment in snake.segments[1::]:
         if snake.head.distance(segment) < 10:
-            game_is_on = False
-            scoreboard.game_over()
+            snake.erase_snake()
+            scoreboard.reset()
+            snake.restart()
 
 
 
